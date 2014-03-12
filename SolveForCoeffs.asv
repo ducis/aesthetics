@@ -1,0 +1,19 @@
+function [ cs ] = SolveForCoeffs( imgs, power, wname )
+    level = numel(imgs);
+    xs = zeros([numel(imgs) level]);
+    ys = zeros([numel(imgs) level]);
+    for i = 1:numel(imgs)
+        [C,S] = wavedec2(imgs{i},level,wname);
+        for j = 1:level
+            h = detcoef2('h',C,S,j);
+            v = detcoef2('v',C,S,j);
+            d = detcoef2('d',C,S,j);
+            t = (abs(h).*power+abs(v).*power+abs(d).*power);
+            [xs(i,j) ys(i,j)] = Center1(t);
+        end
+    end
+    %xs * cs = hxs
+    %ys * cs = hys
+    cs = [ xs; ys ]\[ hxs; hys ];
+end
+

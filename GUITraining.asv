@@ -1,0 +1,7 @@
+function [ xCoeffs,yCoeffs ] = GUITraining( imgs, power, wname  )
+
+    level = numel(imgs);    
+    [hxs,hys] = GUIGetPoints(imgs);
+    
+end
+

@@ -1,0 +1,6 @@
+function [ c ] = Center1( i )
+    [rs,cs] = ndgrid(0:1.0/size(i,1));
+end
+
+
+

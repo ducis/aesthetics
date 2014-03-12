@@ -1,0 +1,2 @@
+s = arrayfun(@(n)RGBCorr(imread([l n.name])), r, 'UniformOutput', false);
+s = [cellfun(@(x)x(1,2),s)  cellfun(@(x)x(1,2),s)   cellfun(@(x)x(1,2),s)]

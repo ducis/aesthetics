@@ -1,0 +1,13 @@
+Is = arrayfun(@(i)RandomImage([256,256],4),[1:5],'UniformOutput',false);
+%Es = cellfun(@entropyfilt,Is,'UniformOutput',false);
+%Cs = cellfun(@CenterOfEntropy,Is,'UniformOutput',false);
+%Es = cellfun(@(img)imfilter(img,fspecial('laplacian')),Is,'UniformOutput',false);
+Es = cellfun(@entropyfilt,Is,'UniformOutput',false);
+Cs = cellfun(@CenterOfIntensity,Es,'UniformOutput',false);
+A = transpose([Is;Es;Cs]);
+A(:,4) = cellfun(@norm,A(:,3),'UniformOutput',false);
+B = sortrows(A,4);
+imwrite(cell2mat(transpose(A(:,1))),'unsorted.png');
+imwrite(cell2mat(transpose(B(:,1))),'sorted.png');
+imwrite(cell2mat(transpose(A(:,2))),'unsortedE.png');
+imwrite(cell2mat(transpose(B(:,2))),'sortedE.png');

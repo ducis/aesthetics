@@ -1,0 +1,5 @@
+function [ img ] = RandomImage( sz )
+    img = ones(sz);
+    DrawRect(randi
+end
+
